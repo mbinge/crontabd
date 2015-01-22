@@ -1,0 +1,3 @@
+t=$(date -d "+10 sec" +"%s")
+echo "end $t" | ./ncat $1
+echo -ne "begin $t\nend 0\n" | ./ncat $2

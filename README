@@ -1,0 +1,35 @@
+==Crontabd==
+
+命令支持: ./ncat 127.0.0.1:8765
+  add           <id> <key> <sec> <min> <hour> <day> <month> <week> <year>
+  del           <id> <key> <sec> <min> <hour> <day> <month> <week> <year>
+  begin         <unixtime>
+  end           <unixtime>
+  log           on | off
+  status
+  keepalive
+
+id:     数字标识
+key:    字符标识
+begin:  从设定的时间生效
+end:    到设定的时间失效
+log:    打开或者关闭日志输出
+status: 显示设定
+keepalive:启动 monitord 后用于保持高可用
+
+
+*注:begin 和end 配合使用可以实现主备间无缝切换工作(switch 脚本)
+
+==Monitord==
+
+配置机器列表后与其通信,失败后自动寻找一个可用机器为工作服务器
+
+
+==并发==
+系统自带的 crontab 为进程模型,单机并发<500,并且不能满足秒和年两级需求
+crontabd 为 go 编写,并发在50w/s
+默认配置为 kafka 输入和输出.
+TCP 输入和输出:
+    考虑通用性,可自行配置 target 以支持TCP方式向特定主机文本输出
+    通过 ncat 可直接向系统add和del 定时项
+    这种模式下均以文本形式交互

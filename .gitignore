@@ -1,0 +1,7 @@
+task.db/
+*.swp
+var/
+test/
+tools/dump
+tools/ncat
+crontabd

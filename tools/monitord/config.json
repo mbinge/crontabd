@@ -1,0 +1,8 @@
+{
+    "pid":"var/pid",
+    "log":"var/log",
+    "mail":["chenchangbing@xiaomi.com"],
+    "host":[
+      "127.0.0.1:8765"
+      ]
+}

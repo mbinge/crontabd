@@ -1,0 +1,79 @@
+{
+  "log": "var/run.log",
+  "pid": "var/run.pid",
+  "snap": "var/snap.json",
+  "tasks": [
+    {
+        "cmd":"/data/software/php/bin/php scene-run.php",
+        "home":"/home/work/miio_cloud/phpapp/app/scene/scripts/",
+        "parallel": 20,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/scene/models","/home/work/miio_cloud/phpapp/app/scene/scripts"], 
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    },
+    {
+        "cmd":"/data/software/php/bin/php time-run.php",
+        "home":"/home/work/miio_cloud/phpapp/app/scene/scripts/",
+        "parallel": 5,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/scene/models","/home/work/miio_cloud/phpapp/app/scene/scripts"], 
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    },
+    {
+        "cmd":"/data/software/php/bin/php statusToHBase.php",
+        "home":"/home/work/miio_cloud/phpapp/app/scene/scripts/",
+        "parallel": 3,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/scene/models","/home/work/miio_cloud/phpapp/app/scene/scripts"],
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    },
+    {
+        "cmd":"/data/software/php/bin/php timer.php",
+        "home":"/home/work/miio_cloud/phpapp/app/scene/scripts/",
+        "parallel": 1,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/scene/models","/home/work/miio_cloud/phpapp/app/scene/scripts"],
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    },
+    {
+        "cmd":"/data/software/php/bin/php statusToSceneRun.php",
+        "home":"/home/work/miio_cloud/phpapp/app/scene/scripts/",
+        "parallel": 5,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/scene/models","/home/work/miio_cloud/phpapp/app/scene/scripts"],
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    },
+    {
+        "cmd":"/data/software/php/bin/php thirdNotify.php",
+        "home":"/home/work/miio_cloud/phpapp/app/scene/scripts/",
+        "parallel": 5,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/scene/models","/home/work/miio_cloud/phpapp/app/scene/scripts"],
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    },
+    {
+        "cmd":"/data/software/php/bin/php zkupdate.php",
+        "home":"/home/work/miio_cloud/phpapp/app/scene/scripts/",
+        "parallel": 1,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/scene/models","/home/work/miio_cloud/phpapp/app/scene/scripts"],
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    },
+    {
+        "cmd":"/data/software/php/bin/php appNotify.php",
+        "home":"/home/work/miio_cloud/phpapp/app/scene/scripts/",
+        "parallel": 5,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/scene/models","/home/work/miio_cloud/phpapp/app/scene/scripts"],
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    },
+    {
+        "cmd":"/data/software/php/bin/php stat.php",
+        "home":"/home/work/miio_cloud/phpapp/app/shop/scripts/",
+        "parallel": 0,
+        "autoAffect": ["/home/work/miio_cloud/phpapp/phplib", "/home/work/miio_cloud/phpapp/app/shop/models","/home/work/miio_cloud/phpapp/app/shop/scripts"],
+        "killGracefull":true,
+        "stdout":"var/php_script.log"
+    }
+    ]
+}
