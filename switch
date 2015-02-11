@@ -1,3 +1,10 @@
-t=$(date -d "+10 sec" +"%s")
+#!/bin/bash
+
+s=$(date +"%S")
+if [ $s -gt 49 ]; then
+    t=$(date -d "+20 sec" +"%s")
+else
+    t=$(date -d "+10 sec" +"%s")
+fi
 echo "end $t" | ./ncat $1
 echo -ne "begin $t\nend 0\n" | ./ncat $2

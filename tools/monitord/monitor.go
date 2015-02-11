@@ -61,6 +61,10 @@ func send_msg(host, body string) {
 
 func beMaster(host string, cur int64) bool {
 	server, err := net.Dial("tcp", host)
+	if err != nil {
+		log.Println(err)
+		return false
+	}
 	defer server.Close()
 	if err != nil {
 		send_msg(host, "To Master Connect Failed")

@@ -67,16 +67,20 @@ func (timer *Timer) Init() {
 }
 
 func (timer *Timer) Fire(cursor int64) {
+	vslice := timer.TimeList.Pop(cursor)
+	if vslice == nil {
+		return
+	}
 	if g_output_start == 0 || cursor < g_output_start {
 		log.Println("Please Set Begin: echo 'begin {unixtime}' | ncat 127.0.0.1:8765\n Current:", g_output_start)
+		vslice.Drop()
+		vslice = nil
 		return
 	}
 	if g_output_end > 0 && cursor > g_output_end {
 		log.Println("Ignore Timer:", g_output_end)
-		return
-	}
-	vslice := timer.TimeList.Pop(cursor)
-	if vslice == nil {
+		vslice.Drop()
+		vslice = nil
 		return
 	}
 	cur_send := 0
